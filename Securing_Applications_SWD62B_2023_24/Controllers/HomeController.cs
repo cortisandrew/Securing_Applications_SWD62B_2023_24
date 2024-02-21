@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Securing_Applications_SWD62B_2023_24.Models;
 using System.Diagnostics;
 
 namespace Securing_Applications_SWD62B_2023_24.Controllers
 {
+
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
