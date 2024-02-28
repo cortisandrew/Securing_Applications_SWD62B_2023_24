@@ -3,9 +3,30 @@ using Microsoft.EntityFrameworkCore;
 using Securing_Applications_SWD62B_2023_24.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+AggregateException? configurationException = null;
 
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"]; //.GetConnectionString("DefaultConnection");
+
+if (String.IsNullOrEmpty(connectionString)) // user forgot to add the connection string in the secrets.json!
+{
+    // Refer to slides User Secrets for examples...
+    var innerException = new ApplicationException("User has not added the default connection to the user secrets file!");
+
+    if (configurationException == null)
+    {
+        configurationException = new AggregateException(innerException);
+    }
+    else
+    {
+        configurationException.InnerExceptions.Append(innerException);
+    }
+
+    // If possible log the information
+    // Decide how to handle this issue
+    throw configurationException;
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
