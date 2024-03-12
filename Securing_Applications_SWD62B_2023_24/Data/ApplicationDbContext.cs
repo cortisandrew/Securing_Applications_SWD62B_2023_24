@@ -13,5 +13,7 @@ namespace Securing_Applications_SWD62B_2023_24.Data
         }
 
         public DbSet<Appraisal> Appraisals { get; set; }
+
+        public DbSet<Student> Students { get; set; }
     }
 }
