@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Securing_Applications_SWD62B_2023_24.Helpers;
 using Securing_Applications_SWD62B_2023_24.Models;
 using System.Diagnostics;
 
 namespace Securing_Applications_SWD62B_2023_24.Controllers
 {
 
-    
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,6 +22,9 @@ namespace Securing_Applications_SWD62B_2023_24.Controllers
             return View();
         }
 
+        //[Authorize(Roles ="Admin, Moderator")]
+        [Authorize()]
+        [AuthorizeFileAccess()]
         public IActionResult Privacy()
         {
             return View();
