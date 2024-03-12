@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Securing_Applications_SWD62B_2023_24.Data;
 
+// swda82419@gmail.com
+
 var builder = WebApplication.CreateBuilder(args);
 AggregateException? configurationException = null;
 
