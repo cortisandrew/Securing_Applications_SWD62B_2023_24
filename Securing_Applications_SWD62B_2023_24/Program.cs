@@ -2,7 +2,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Securing_Applications_SWD62B_2023_24.Data;
 
+// In the secrets.json (App Secrets), you will need to add the following:
+/*
+{
+  "ConnectionStrings:DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=aspnet-Securing_Applications_SWD62B_2023_24-478722ea-356a-4450-acb3-51df5b5c5dff;Trusted_Connection=True;MultipleActiveResultSets=true",
+  "Authentication:Google:ClientId": "YourClientId",
+  "Authentication:Google:ClientSecret": "YourClientSecret"
+}
+*/
+
 var builder = WebApplication.CreateBuilder(args);
+//var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
 AggregateException? configurationException = null;
 
 // Add services to the container.
@@ -35,6 +45,12 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAuthentication().AddGoogle(options =>
+{
+    options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+});
 
 var app = builder.Build();
 
