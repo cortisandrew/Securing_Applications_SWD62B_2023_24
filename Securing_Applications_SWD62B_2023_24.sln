@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Securing_Applications_SWD62B_2023_24", "Securing_Applications_SWD62B_2023_24\Securing_Applications_SWD62B_2023_24.csproj", "{453A8E24-1EF7-4DF6-8FF7-2EB8E89883D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Securing_Applications_SWD62B_2023_24", "Securing_Applications_SWD62B_2023_24\Securing_Applications_SWD62B_2023_24.csproj", "{453A8E24-1EF7-4DF6-8FF7-2EB8E89883D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "Cryptography\Cryptography.csproj", "{76C4B91B-5835-4733-9914-3556121FEFC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{453A8E24-1EF7-4DF6-8FF7-2EB8E89883D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{453A8E24-1EF7-4DF6-8FF7-2EB8E89883D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{453A8E24-1EF7-4DF6-8FF7-2EB8E89883D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76C4B91B-5835-4733-9914-3556121FEFC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76C4B91B-5835-4733-9914-3556121FEFC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76C4B91B-5835-4733-9914-3556121FEFC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76C4B91B-5835-4733-9914-3556121FEFC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
