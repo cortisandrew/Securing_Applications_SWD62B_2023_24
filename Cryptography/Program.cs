@@ -7,6 +7,36 @@ namespace Cryptography
     {
         static void Main(string[] args)
         {
+            //SymmetricEncryption();
+
+            byte[] fileAsBytes = File.ReadAllBytes("OriginalFile.txt");
+            byte[] otherFileAsBytes = File.ReadAllBytes("OtherFile.txt");
+
+            RSA rsa = RSA.Create(); // usually you will want to export the keys to store them or import the keys on create...
+
+            //RSAPKCS1SignatureFormatter rsaFormatter = new RSAPKCS1SignatureFormatter(rsa);
+            byte[] signature = rsa.SignData(fileAsBytes, HashAlgorithmName.SHA384, RSASignaturePadding.Pkcs1);
+
+            HashAlgorithm hashAlgorithm = SHA384.Create();
+            byte[] hashDigest = hashAlgorithm.ComputeHash(otherFileAsBytes);
+
+            RSAPKCS1SignatureDeformatter rsaDeformatter = new RSAPKCS1SignatureDeformatter(rsa);
+            rsaDeformatter.SetHashAlgorithm("SHA384");
+            if (rsaDeformatter.VerifySignature(hashDigest, signature))
+            {
+                Console.WriteLine("Signature is accepted");
+            } else
+            {
+                Console.WriteLine("Invalid Signature!");
+            }
+
+
+            int a = 0;
+            a++;
+        }
+
+        private static void SymmetricEncryption()
+        {
             // Get the plaintext
             string plainText = "Hello, World!";
 
@@ -15,8 +45,8 @@ namespace Cryptography
             Console.WriteLine();
 
             // Encode the plaintext
-            Encoding encoding= Encoding.UTF8;
-            
+            Encoding encoding = Encoding.UTF8;
+
 
             // obtain the plainText as byte[]
             byte[] plainTextAsByte = encoding.GetBytes(plainText);
@@ -40,7 +70,7 @@ namespace Cryptography
             // byte[] byteData = Convert.FromBase64String(plainTextAsBase64String);
 
             Aes aes = Aes.Create();
-            
+
             // In the assignment I might give you the key to use
             aes.GenerateKey();
             // aes.Key = ...
@@ -84,7 +114,7 @@ namespace Cryptography
 
                     ms.Position = 0; // go back to start
                     byte[] buffer = ms.GetBuffer(); // the buffer is the byte[] that memory stream is built upon
-                    
+
                     // careful! Common mistake! This will not work!
                     // encryptedString = Convert.ToBase64String(buffer, 0, buffer.Length);
                     encryptedString = Convert.ToBase64String(buffer, 0, (int)ms.Length);
@@ -96,7 +126,7 @@ namespace Cryptography
             Console.WriteLine();
 
             string decryptedString = String.Empty;
-            byte[] encryptedDataAsByte =  Convert.FromBase64String(encryptedString);
+            byte[] encryptedDataAsByte = Convert.FromBase64String(encryptedString);
 
             using (MemoryStream ms = new MemoryStream(encryptedDataAsByte))
             {
@@ -116,7 +146,6 @@ namespace Cryptography
             Console.WriteLine("Decrypted String:");
             Console.WriteLine(decryptedString);
             Console.WriteLine();
-
         }
     }
 }
