@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Securing_Applications_SWD62B_2023_24.Data;
 
+// // swda82419@gmail.com
 // In the secrets.json (App Secrets), you will need to add the following:
 /*
 {
