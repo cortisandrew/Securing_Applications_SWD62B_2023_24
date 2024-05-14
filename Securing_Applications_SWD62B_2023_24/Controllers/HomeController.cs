@@ -6,8 +6,6 @@ using System.Diagnostics;
 
 namespace Securing_Applications_SWD62B_2023_24.Controllers
 {
-
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -17,6 +15,7 @@ namespace Securing_Applications_SWD62B_2023_24.Controllers
             _logger = logger;
         }
 
+        [CustomActionFilter]
         public IActionResult Index()
         {
             return View();
@@ -28,6 +27,7 @@ namespace Securing_Applications_SWD62B_2023_24.Controllers
         public IActionResult Privacy()
         {
             return View();
+            
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
