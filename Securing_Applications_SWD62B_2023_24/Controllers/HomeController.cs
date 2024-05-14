@@ -57,8 +57,6 @@ namespace Securing_Applications_SWD62B_2023_24.Controllers
         [HttpPost]
         public IActionResult UploadImage(IFormFile fileUpload)
         {
-            throw new Exception("Error!");
-
             // setup should be in a helper not here...
             signaturePreFixWhiteList.Add("jpg", new byte[] { 255, 216, 255 });
             signaturePreFixWhiteList.Add("jpeg", new byte[] { 255, 216, 255 });
@@ -142,7 +140,7 @@ namespace Securing_Applications_SWD62B_2023_24.Controllers
 
             }
 
-            return Content("I have received your HTTP Post");
+            // return Content("I have received your HTTP Post");
         }
     }
 }
